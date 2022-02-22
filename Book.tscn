@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/book/Book.gd" type="Script" id=1]
 [ext_resource path="res://assets/book/Base.png" type="Texture" id=2]
@@ -6,10 +6,6 @@
 [ext_resource path="res://assets/book/CornerTips.png" type="Texture" id=4]
 [ext_resource path="res://assets/book/Design1.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Poppins-Regular.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://scripts/book/Sprite_CornerTips.gd" type="Script" id=7]
-[ext_resource path="res://scripts/book/Sprite_Base.gd" type="Script" id=8]
-[ext_resource path="res://scripts/book/Sprite_Design1.gd" type="Script" id=9]
-[ext_resource path="res://scripts/book/Sprite_Pages.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -18,24 +14,19 @@ font_data = ExtResource( 6 )
 [node name="Book" type="Node2D"]
 scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
-book_title = "iaksdf"
 
 [node name="Sprite_Base" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_rect = Rect2( 192, 15, 108.65, 72 )
-script = ExtResource( 8 )
 
 [node name="Sprite_Pages" type="Sprite" parent="."]
 texture = ExtResource( 3 )
-script = ExtResource( 10 )
 
 [node name="Sprite_CornerTips" type="Sprite" parent="."]
 texture = ExtResource( 4 )
-script = ExtResource( 7 )
 
-[node name="Sprite_Design1" type="Sprite" parent="."]
+[node name="Sprite_Design" type="Sprite" parent="."]
 texture = ExtResource( 5 )
-script = ExtResource( 9 )
 
 [node name="Title" type="Node2D" parent="."]
 position = Vector2( 1, -7.5 )
