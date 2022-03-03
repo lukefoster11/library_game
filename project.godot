@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Book",
 "language": "GDScript",
-"path": "res://scripts/book/Book.gd"
+"path": "res://Book/scripts/Book.gd"
 }, {
 "base": "",
 "class": "GitAPI",
@@ -28,6 +28,15 @@ _global_script_class_icons={
 
 config/name="Untitled Library Game"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=480
+window/size/height=270
+window/size/test_width=960
+window/size/test_height=540
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [gdnative]
 
@@ -55,6 +64,10 @@ move_right={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_2="interactive"
 
 [physics]
 

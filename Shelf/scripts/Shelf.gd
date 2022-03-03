@@ -1,6 +1,6 @@
 extends Node2D
 
-const Book = preload("res://Book.tscn")
+const Book = preload("res://Book/scenes/Book.tscn")
 
 export (String) var left_code_letter : String
 export (Vector2) var left_code_bounds : Vector2
