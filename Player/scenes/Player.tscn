@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Player/scripts/InteractionDetector.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 4 )
@@ -25,6 +26,10 @@ shape = SubResource( 1 )
 [node name="InteractionDetector" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector"]
 shape = SubResource( 2 )
+
+[connection signal="area_entered" from="InteractionDetector" to="InteractionDetector" method="_on_InteractionDetector_area_entered"]
+[connection signal="area_exited" from="InteractionDetector" to="InteractionDetector" method="_on_InteractionDetector_area_exited"]
