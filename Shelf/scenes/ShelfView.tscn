@@ -15,3 +15,14 @@ __meta__ = {
 z_index = 5
 texture = ExtResource( 1 )
 centered = false
+
+[node name="Cursor" type="Node2D" parent="."]
+position = Vector2( 5.5, 6.5 )
+z_index = 7
+
+[node name="Line2D" type="Line2D" parent="Cursor"]
+points = PoolVector2Array( 0, 0, 12, 0, 12, 38, 0, 38, 0, 0 )
+width = 1.0
+default_color = Color( 0.921569, 0.870588, 0.12549, 1 )
+begin_cap_mode = 1
+end_cap_mode = 1

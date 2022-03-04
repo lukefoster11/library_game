@@ -11,11 +11,10 @@ var books : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fill_shelf(code_prefix, code_bounds)
+	write_books(code_prefix, code_bounds)
 	 # Replace with function body.
 
-
-func fill_shelf(code_prefix : String, code_bounds : Vector2) -> void:
+func write_books(code_prefix : String, code_bounds : Vector2) -> void:
 	for i in range(code_bounds.x, code_bounds.y):
 		var book : Book = Book.instance() as Book
 		book.code = code_prefix + str(i)
