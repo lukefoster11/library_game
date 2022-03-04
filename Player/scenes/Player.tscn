@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/scripts/InteractionDetector.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12, 4 )
+extents = Vector2( 12.8, 4 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 26.0
@@ -13,14 +13,13 @@ radius = 26.0
 [node name="Player" type="KinematicBody2D"]
 z_index = 2
 script = ExtResource( 1 )
-max_speed = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 9 )
 shape = SubResource( 1 )
 
 [node name="InteractionDetector" type="Area2D" parent="."]

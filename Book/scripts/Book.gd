@@ -1,15 +1,12 @@
-extends Node2D
-
 class_name Book
+extends Node2D
 
 const CHARS : String = 'abcdefghijklmnopqrstuvwxyz'
 const SPINES11x37 : Array = [preload("res://Book/scenes/spines/11x37Spine1.tscn")]
 const SPINES14x26 : Array = [preload("res://Book/scenes/spines/14x26Spine1.tscn")]
-var Spine : PackedScene
 
 export(String) var code_prefix : String
 export(float) var code_number: float
-export(String) var code : String
 
 var title : String
 var dimensions : Vector2
@@ -19,6 +16,7 @@ var design_color : Color
 var pages_color : Color
 var corner_tips_color : Color
 
+var Spine : PackedScene
 var spine_base : Sprite
 var spine_design : Sprite
 var spine_tag : Sprite

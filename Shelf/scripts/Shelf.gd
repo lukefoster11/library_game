@@ -1,5 +1,5 @@
-extends Node2D
 class_name Shelf
+extends Node2D
 
 const Book = preload("res://Book/scenes/Book.tscn")
 
@@ -9,7 +9,6 @@ export (Vector2) var code_bounds : Vector2
 var books : Array = []
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var code_nums : Array = write_books(code_bounds)
 	for i in len(books):
@@ -17,6 +16,7 @@ func _ready() -> void:
 		books[i].code_prefix = code_prefix
 		BookGlobals.all_books.append(books[i])
 
+# Fill `books` array with `Book` instances
 func write_books(code_bounds : Vector2) -> Array:
 	var row : int = 1
 	var xpos : int = 6
@@ -33,22 +33,15 @@ func write_books(code_bounds : Vector2) -> Array:
 		code_nums.append(stepify(rand_range(code_bounds.x, code_bounds.y), 0.1))
 		xpos += book.dimensions.x
 	code_nums.sort()
-	for i in range(1, len(code_nums)):
-		if code_nums[i] == code_nums[i-1]:
-			code_nums[i] += 0.01
+	code_nums = rid_dups(code_nums)
 	return code_nums
 
-func write_sequel(prev_book : Book, book : Book) -> Book:
-	book.dimensions = prev_book.dimensions
-	book.Spine = prev_book.Spine
-	book.base_color = prev_book.base_color
-	book.design_color = prev_book.design_color
-	book.code = prev_book.code
-	return book
-
-class SortByCode:
-	static func sort_by_code(a : Book, b : Book) -> bool:
-		if a.code_number < b.code_number:
-			return true
-		else:
-			return false
+# Get rid of all duplicate elements in `list`
+#   add 0.001 to each subsequent repeat of element
+func rid_dups(list : Array) -> Array:
+	for i in range(len(list)):
+		var count = list.count(list[i])
+		if count > 1:
+			for j in range(1, count):
+				list[i+j] = list[i+j-1] + 0.001
+	return list
