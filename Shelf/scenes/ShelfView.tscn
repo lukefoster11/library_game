@@ -11,7 +11,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Shelf" type="Sprite" parent="."]
 z_index = 5
 texture = ExtResource( 1 )
 centered = false

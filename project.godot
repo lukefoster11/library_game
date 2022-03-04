@@ -18,10 +18,22 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Node2D",
+"class": "Shelf",
+"language": "GDScript",
+"path": "res://Shelf/scripts/Shelf.gd"
+}, {
+"base": "Control",
+"class": "ShelfView",
+"language": "GDScript",
+"path": "res://Shelf/scripts/ShelfView.gd"
 } ]
 _global_script_class_icons={
 "Book": "",
-"GitAPI": ""
+"GitAPI": "",
+"Shelf": "",
+"ShelfView": ""
 }
 
 [application]
