@@ -22,17 +22,9 @@ func _process(delta: float) -> void:
 		print(len(BookGlobals.all_books))
 		queue_free()
 	
-	if Input.is_action_just_pressed("move_right"):
-		if selected_book < len(books) - 1:
-			selected_book += 1
-			var book : Book = books[selected_book]
-			update_cursor(book)
+	update_selected_book()
 	
-	if Input.is_action_just_pressed("move_left"):
-		if selected_book > 0:
-			selected_book -= 1
-			var book : Book = books[selected_book]
-			update_cursor(book)
+	
 
 func fill_shelves() -> void:
 	var rem : Array = fill_shelf(books, 1)
@@ -54,6 +46,42 @@ func fill_shelf(rem_books, row) -> Array:
 		else:
 			break
 	return rem_books.slice(i, -1)
+
+func update_selected_book() -> void:
+	if Input.is_action_just_pressed("move_right"):
+		if selected_book < len(books) - 1:
+			selected_book += 1
+			update_cursor(books[selected_book])
+	
+	if Input.is_action_just_pressed("move_left"):
+		if selected_book > 0:
+			selected_book -= 1
+			update_cursor(books[selected_book])
+	
+	if Input.is_action_just_pressed("move_down"):
+		var cur_book : Book = books[selected_book]
+		var temp_select : int = selected_book
+		while (temp_select + 1) < len(books) and books[temp_select + 1].position.x > books[temp_select].position.x:
+			temp_select += 1
+		if (temp_select + 1) < len(books):
+			temp_select += 1
+			while books[temp_select].position.x <= (cur_book.position.x - cur_book.dimensions.x / 2):
+				temp_select += 1
+			selected_book = temp_select
+			update_cursor(books[selected_book])
+	
+	if Input.is_action_just_pressed("move_up"):
+		var cur_book : Book = books[selected_book]
+		var temp_select : int = selected_book
+		while temp_select > 0 and books[temp_select - 1].position.x < books[temp_select].position.x:
+			temp_select -= 1
+		if temp_select > 0:
+			temp_select -= 1
+			while books[temp_select].position.x >= (cur_book.position.x + cur_book.dimensions.x / 2):
+				temp_select -= 1
+			selected_book = temp_select
+			update_cursor(books[selected_book])
+
 
 func update_cursor(book : Book) -> void:
 	if book != null:
