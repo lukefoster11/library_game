@@ -19,6 +19,10 @@ func _process(delta: float) -> void:
 		if interactable_object != null and interactable_object.has_method("_on_interact"):
 			if interactable_object.interactable:
 				interactable_object._on_interact()
+	if Input.is_action_just_pressed("new"):
+		var index : int = randi() % len(BookGlobals.all_books)
+		var book : Book = BookGlobals.all_books[index]
+		print(book.code_prefix + str(book.code_number) + ": " + book.title)
 
 
 func _on_InteractionDetector_area_entered(area: Area2D) -> void:

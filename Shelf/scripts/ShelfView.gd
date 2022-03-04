@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 		for book in books:
 			remove_child(book)
 		PlayerGlobals.is_active = true
+		print(len(BookGlobals.all_books))
 		queue_free()
 	
 	if Input.is_action_just_pressed("move_right"):
@@ -60,3 +61,4 @@ func update_cursor(book : Book) -> void:
 		line2D.points[1] = Vector2(book.dimensions.x + 1, 0)
 		line2D.points[2] = Vector2(book.dimensions.x + 1, book.dimensions.y + 1)
 		line2D.points[3] = Vector2(0, book.dimensions.y + 1)
+		print(str(book.code_number) + " " + book.title)

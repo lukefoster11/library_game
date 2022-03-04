@@ -1,55 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Book/scripts/Book.gd" type="Script" id=1]
-[ext_resource path="res://Book/assets/CornerTips.png" type="Texture" id=2]
-[ext_resource path="res://Book/assets/Pages.png" type="Texture" id=3]
-[ext_resource path="res://Book/assets/Base.png" type="Texture" id=4]
-[ext_resource path="res://Book/assets/Design1.png" type="Texture" id=5]
-[ext_resource path="res://Misc/assets/fonts/Poppins-Regular.ttf" type="DynamicFontData" id=6]
-
-[sub_resource type="DynamicFont" id=1]
-size = 50
-font_data = ExtResource( 6 )
 
 [node name="Book" type="Node2D"]
 z_index = 6
 script = ExtResource( 1 )
-
-[node name="Cover" type="Node2D" parent="."]
-visible = false
-
-[node name="Sprite_Base" type="Sprite" parent="Cover"]
-texture = ExtResource( 4 )
-region_rect = Rect2( 192, 15, 108.65, 72 )
-
-[node name="Sprite_Pages" type="Sprite" parent="Cover"]
-texture = ExtResource( 3 )
-
-[node name="Sprite_CornerTips" type="Sprite" parent="Cover"]
-texture = ExtResource( 2 )
-
-[node name="Sprite_Design" type="Sprite" parent="Cover"]
-texture = ExtResource( 5 )
-
-[node name="Title" type="Node2D" parent="Cover"]
-position = Vector2( 1, -7.5 )
-scale = Vector2( 0.1, 0.1 )
-
-[node name="Label" type="Label" parent="Cover/Title"]
-modulate = Color( 0, 0, 0, 1 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -114.5
-margin_top = -56.0
-margin_right = 114.5
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 1 )
-text = "Title"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}

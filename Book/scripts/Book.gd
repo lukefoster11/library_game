@@ -5,9 +5,10 @@ class_name Book
 const CHARS : String = 'abcdefghijklmnopqrstuvwxyz'
 const SPINES11x37 : Array = [preload("res://Book/scenes/spines/11x37Spine1.tscn")]
 const SPINES14x26 : Array = [preload("res://Book/scenes/spines/14x26Spine1.tscn")]
-var Spine : Node2D
+var Spine : PackedScene
 
 export(String) var code_prefix : String
+export(float) var code_number: float
 export(String) var code : String
 
 var title : String
@@ -22,17 +23,8 @@ var spine_base : Sprite
 var spine_design : Sprite
 var spine_tag : Sprite
 
-
-
-#onready var cover_label : Label = $Cover/Title/Label
-#onready var cover_base : Sprite = $Cover/Sprite_Base
-#onready var cover_design : Sprite = $Cover/Sprite_Design
-#onready var cover_pages : Sprite = $Cover/Sprite_Pages
-#onready var cover_cornertips : Sprite = $Cover/Sprite_CornerTips
-
-
 func _init() -> void:
-	randomize()
+	rand_seed(5)
 	title = rand_title()
 	color_book()
 	dimensions = rand_dimensions()
@@ -48,7 +40,6 @@ func _ready() -> void:
 	spine_design = $Spine/Design as Sprite
 	spine_tag = $Spine/Tag as Sprite
 	
-	#cover_label.text = book_title
 	spine_base.modulate = base_color
 	spine_design.modulate = design_color
 	spine_tag.modulate = pages_color
@@ -59,7 +50,7 @@ func _process(delta: float) -> void:
 	pass
 
 func rand_title() -> String:
-	var length : int = 1 + randi() % 2
+	var length : int = 1 + randi() % 3
 	var title : String
 	for i in range(length):
 		title += rand_word() + " "
@@ -81,11 +72,11 @@ func color_book() -> void:
 func rand_dimensions() -> Vector2:
 	var num : int = randi()
 	if num % 2:
-		return Vector2(11,37)
+		return Vector2(11, 37)
 	else:
-		return Vector2(14,26)
+		return Vector2(14, 26)
 
-func rand_spine() -> Node2D:
+func rand_spine() -> PackedScene:
 	if dimensions == Vector2(11, 37):
 		return SPINES11x37[randi() % len(SPINES11x37) - 1]
 	if dimensions == Vector2(14, 26):
