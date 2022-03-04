@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func fill_shelves() -> void:
-	var rem = fill_shelf(books, 1)
+	var rem : Array = fill_shelf(books, 1)
 	rem = fill_shelf(rem, 2)
 	rem = fill_shelf(rem, 3)
 	rem = fill_shelf(rem, 4)
@@ -30,13 +30,13 @@ func fill_shelves() -> void:
 	rem = fill_shelf(rem, 6)
 
 func fill_shelf(rem_books, row) -> Array:
-	var i = 0
-	var x = 6
+	var i : int = 0
+	var x : int = 6
 	for book in rem_books:
-		if x + book.width < 474:
+		if x + book.dimensions.x < 474:
 			add_child(book)
-			book.position = Vector2(x, row*44-book.height)
-			x += book.width
+			book.position = Vector2(x, row*44-book.dimensions.y)
+			x += book.dimensions.x
 			i += 1
 		else:
 			break

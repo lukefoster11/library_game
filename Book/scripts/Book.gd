@@ -3,47 +3,55 @@ extends Node2D
 class_name Book
 
 const CHARS : String = 'abcdefghijklmnopqrstuvwxyz'
+const SPINES11x37 : Array = [preload("res://Book/scenes/spines/11x37Spine1.tscn")]
+const SPINES14x26 : Array = [preload("res://Book/scenes/spines/14x26Spine1.tscn")]
+var Spine : Node2D
 
 export(String) var code_prefix : String
 export(String) var code : String
-export(int) var width : int
-export(int) var height : int
 
 var title : String
+var dimensions : Vector2
+
 var base_color : Color
 var design_color : Color
 var pages_color : Color
 var corner_tips_color : Color
 
+var spine_base : Sprite
+var spine_design : Sprite
+var spine_tag : Sprite
 
-onready var spine_base : Sprite = $Spine/Base as Sprite
-onready var spine_design : Sprite = $Spine/Design as Sprite
-onready var spine_tag : Sprite = $Spine/Tag as Sprite
 
-onready var cover_label : Label = $Cover/Title/Label
-onready var cover_base : Sprite = $Cover/Sprite_Base
-onready var cover_design : Sprite = $Cover/Sprite_Design
-onready var cover_pages : Sprite = $Cover/Sprite_Pages
-onready var cover_cornertips : Sprite = $Cover/Sprite_CornerTips
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+#onready var cover_label : Label = $Cover/Title/Label
+#onready var cover_base : Sprite = $Cover/Sprite_Base
+#onready var cover_design : Sprite = $Cover/Sprite_Design
+#onready var cover_pages : Sprite = $Cover/Sprite_Pages
+#onready var cover_cornertips : Sprite = $Cover/Sprite_CornerTips
+
 
 func _init() -> void:
 	randomize()
 	title = rand_title()
 	color_book()
-	width = 11
-	height = 37
+	dimensions = rand_dimensions()
+	Spine = rand_spine()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var spine : Node2D = Spine.instance()
+	add_child(spine)
+	spine.name = "Spine"
+	
+	spine_base = $Spine/Base as Sprite
+	spine_design = $Spine/Design as Sprite
+	spine_tag = $Spine/Tag as Sprite
+	
 	#cover_label.text = book_title
 	spine_base.modulate = base_color
 	spine_design.modulate = design_color
 	spine_tag.modulate = pages_color
-	#color_book()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,8 +77,18 @@ func color_book() -> void:
 	pages_color = Color(rand_range(0.85, 0.92), rand_range(0.85, 1), rand_range(0.85, 1), 1)
 	corner_tips_color = Color(rand_range(0.8, 1), rand_range(0.6, 0.9), rand_range(0, 0.2), 1)
 	design_color = Color(rand_range(0.2, 0.6), rand_range(0.2, 0.6), rand_range(0.2, 0.6), 1)
-	#cover_base.modulate = base_color
-	#cover_pages.modulate = pages_color
-	#cover_cornertips.modulate = corner_tips_color
-	#cover_design.modulate = design_color
-	
+
+func rand_dimensions() -> Vector2:
+	var num : int = randi()
+	if num % 2:
+		return Vector2(11,37)
+	else:
+		return Vector2(14,26)
+
+func rand_spine() -> Node2D:
+	if dimensions == Vector2(11, 37):
+		return SPINES11x37[randi() % len(SPINES11x37) - 1]
+	if dimensions == Vector2(14, 26):
+		return SPINES14x26[randi() % len(SPINES14x26) - 1]
+	else:
+		 return null

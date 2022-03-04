@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Book/assets/Spines.png" type="Texture" id=1]
+
+[node name="14x26Spine1" type="Node2D"]
+
+[node name="Base" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 48, 14, 26 )
+
+[node name="Design" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 14, 48, 14, 26 )
+
+[node name="Tag" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 3, 8 )
+region_enabled = true
+region_rect = Rect2( 20, 0, 8, 10 )
