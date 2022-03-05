@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 class_name ShelfView
 
 var books : Array = []
@@ -9,6 +9,7 @@ onready var line2D : Line2D = $Cursor/Line2D as Line2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerGlobals.camera.current = false
 	PlayerGlobals.is_active = false
 	fill_shelves()
 	update_cursor(books.front())
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 		for book in books:
 			remove_child(book)
 		PlayerGlobals.is_active = true
-		print(len(BookGlobals.all_books))
+		PlayerGlobals.camera.current = true
 		queue_free()
 	
 	update_selected_book()

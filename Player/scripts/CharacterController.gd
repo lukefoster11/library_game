@@ -5,6 +5,11 @@ export (int) var max_speed : int = 50
 var velocity : Vector2 = Vector2()
 var input : Vector2 = Vector2()
 
+onready var camera : Camera2D = $Camera2D as Camera2D
+
+func _ready() -> void:
+	PlayerGlobals.camera = camera
+
 func _physics_process(delta):
 	input = Vector2()
 	if PlayerGlobals.is_active:
